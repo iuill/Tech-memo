@@ -14,6 +14,11 @@ https://github.com/SeleniumHQ/docker-selenium
 
 ![インストール用コマンド](img/docker-selenium-memo/docker-selenium-install.png)
 
+
+開発時はVNCで接続できる以下の形のコマンドが便利。  
+port=5900, password=secretで接続可能。  
+`docker run -d -p 4444:4444 -p 5900:5900 --shm-size="2g" selenium/standalone-chrome:4.1.0-20211209`
+
 ## C#からdocker-seleniumを使う
 
 最近正式リリースされた Visual Studio Community 2022 で適当に作成してみる。
