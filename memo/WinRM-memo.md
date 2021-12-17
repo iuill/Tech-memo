@@ -1,6 +1,6 @@
 # WinRM-memo
 
-## Windows Sandoboxで検証する方法
+## Windows Sandboxで検証する方法
 
 1. Windows Sandbox側
     1. Powershellを立ち上げる
