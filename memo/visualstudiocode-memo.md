@@ -6,10 +6,13 @@ Ctrl + k -> v
 
 ## markdownへの画像貼り付け
 
-参考
+### 参考
 
-> Past Image拡張機能が便利  
-> https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image
+Markdownでスクショ画像をペーストする(VS Code)  
+https://zenn.dev/ktechb/articles/968ff79f8f9c46a26ee5
+
+Marketplace  
+https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image
 
 
 ### インストール方法
