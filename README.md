@@ -5,3 +5,4 @@
 * [Visual Studio Code](memo/visualstudiocode-memo.md)
 * [WinRM](memo/WinRM-memo.md)
 * [Node.js + Electron](memo/electron-memo.md)
+* [GitHub](memo/github-memo.md)
