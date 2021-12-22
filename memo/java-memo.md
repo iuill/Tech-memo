@@ -1,17 +1,26 @@
 # javaメモ書き
 
-## jabswitch
+## Java Access Bridge, JAB, Java Accessibility API
 
-### ソースコード
+### jabswitchソースコード
+
+* jdk6, jdk7  
+jabswitch.cpp無し
+
+* jdk8  
+https://github.com/openjdk/jdk8u/blob/master/jdk/src/windows/native/sun/bridge/jabswitch.cpp
 
 * jdk15  
 https://github.com/openjdk/jdk15u/blob/master/src/jdk.accessibility/windows/native/jabswitch/jabswitch.cpp
+
 * jdk18  
 https://github.com/openjdk/jdk18u/blob/master/src/jdk.accessibility/windows/native/jabswitch/jabswitch.cpp
 
-バージョン間で特に差異はない模様。（コンパイルオプションは未確認）
+JDK8～JDK18間で特に差異はない模様。途中でメモリ開放の修正が入ってるくらい。
+（コンパイルオプションは未確認）
 
-### 処理内容メモ書き
+
+#### 処理内容メモ書き
 
 `jabswitch.exe -enable`は以下二点の更新を行う。
 
@@ -20,7 +29,7 @@ https://github.com/openjdk/jdk18u/blob/master/src/jdk.accessibility/windows/nati
 * レジストリ
     * HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Accessibility
 
-#### ファイル
+##### ファイル
 
 ファイルの更新処理は、エラーチェック＆エラー通知をしっかり行っており、以下文字列の先頭 "#" を外す動き。  
 ソースコード内のコメントでも記載あるけど。
@@ -42,7 +51,7 @@ void enableJAB() {
             // 以下略
 ```
 
-#### レジストリ
+##### レジストリ
 
 1. レジストリキー `HKCU\Software\Microsoft\Windows NT\CurrentVersion\Accessibility` の存在有無を確認
     1. 存在しなければそのまま終了（特にエラー通知はしない）
@@ -81,3 +90,42 @@ void enableJAB() {
     RegSetValueEx(hKey, ACCESSIBILITY_CONFIG, 0, REG_SZ, (BYTE *)newStr, dataLength);
     ```
 
+### accessibility.properties参照箇所
+
+#### JDK6
+
+jabswitchで参照していた `%USERPROFILE%\\.accessibility.properties` については、JDK6時点でもファイルパス変更はされていないようだ。  
+そして %JAVA_HOME%\\lib\\accessibility.properties でもかまわないようだ。
+
+jdk\\src\\share\\classes\\java\\awt\\Toolkit.java
+```java
+private static void initAssistiveTechnologies() {
+    // 中略
+    final String sep = File.separator;
+    // 中略
+
+    // Try loading the per-user accessibility properties file.
+    try {
+        File propsFile = new File(
+            System.getProperty("user.home") +
+            sep + ".accessibility.properties");
+        FileInputStream in =
+            new FileInputStream(propsFile);
+
+        // Inputstream has been buffered in Properties class
+        properties.load(in);
+        in.close();
+    } catch (Exception e) {
+        // Per-user accessibility properties file does not exist
+    }
+
+    // Try loading the system-wide accessibility properties
+    // file only if a per-user accessibility properties
+    // file does not exist or is empty.
+    if (properties.size() == 0) {
+        try {
+            File propsFile = new File(
+                System.getProperty("java.home") + sep + "lib" +
+                sep + "accessibility.properties");
+    // 以下略
+```
