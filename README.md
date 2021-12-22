@@ -6,3 +6,4 @@
 * [WinRM](memo/WinRM-memo.md)
 * [Node.js + Electron](memo/electron-memo.md)
 * [GitHub](memo/github-memo.md)
+* [Java](memo/java-memo.md)
