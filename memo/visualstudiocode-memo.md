@@ -52,7 +52,7 @@ https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image
 
 * たぶんユーザの settings.json を変更するのが良い気がする
     * 以下追記
-        ```
+        ```json
             "workbench.colorCustomizations": {
             "titleBar.activeBackground": "#20538a",
             "titleBar.activeForeground": "#cccccc",
@@ -60,3 +60,18 @@ https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image
             // "activityBar.foreground": "#000000"
         }
         ```
+
+## 特定ワークスペースのみテーマを変更する
+
+* ワークスペースの settings.json を以下のように変更
+    ```json
+    {
+    //～略～,
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#20538a",
+        "titleBar.activeForeground": "#cccccc",
+        // "activityBar.background": "#069194",
+        // "activityBar.foreground": "#000000"
+      }
+    }
+```
