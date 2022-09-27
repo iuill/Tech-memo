@@ -1,5 +1,9 @@
 # Visual Studio Code メモ書き
 
+## コマンドパレット
+
+* ctrl + shift + p
+
 ## markdown プレビュー
 
 Ctrl + k -> v
@@ -34,3 +38,25 @@ https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image
 1. 使いたい画像をスクショ(Windows:Win+shift+s, Mac: Cmd+Shift+5)
 1. 貼りたい場所にCtrl+Alt+V (MacならCmd+alt+V)
 1. 設定したフォルダに画像が保存され、そのパスへの参照が挿入される
+
+## settings.json
+
+* コマンドパレットで `open setting json` から選択
+* ユーザ
+    * 左下の[歯車マーク] -> [設定] -> 右上のタイトルバー直下にあるアイコンから開ける
+    * `%APPDATA%\Code\User\settings.json`
+* ワークスペース
+    * `<プロジェクトルート>/.vscode/settings.json`
+
+## タイトルバーの色変更
+
+* たぶんユーザの settings.json を変更するのが良い気がする
+    * 以下追記
+        ```
+            "workbench.colorCustomizations": {
+            "titleBar.activeBackground": "#20538a",
+            "titleBar.activeForeground": "#cccccc",
+            // "activityBar.background": "#069194",
+            // "activityBar.foreground": "#000000"
+        }
+        ```
