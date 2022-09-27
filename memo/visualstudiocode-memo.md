@@ -66,12 +66,9 @@ https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image
 * ワークスペースの settings.json を以下のように変更
     ```json
     {
-    //～略～,
-    "workbench.colorCustomizations": {
-        "titleBar.activeBackground": "#20538a",
-        "titleBar.activeForeground": "#cccccc",
-        // "activityBar.background": "#069194",
-        // "activityBar.foreground": "#000000"
-      }
+        //略
+        "workbench.colorTheme": "GitHub Dark",
+        "workbench.layoutControl.enabled": false,
+        //略
     }
-```
+    ```
