@@ -72,3 +72,24 @@ https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image
         //略
     }
     ```
+
+## Cline/Roo-Code系とのターミナル統合
+
+以下のようなエラーが出る場合、基本的には「まだ問題がありますか？」のリンク先に従えばOK。
+
+* ![](img/visualstudiocode-memo/20250330-14333779.png)
+    > シェル統合が利用できません
+    > VSCE output start escape sequence (]633;C or ]133;C) not received, but the stream has started. Upstream VSCE Bug?
+    > 
+    > Please update VSCode (CMD/CTRL + Shift + P → "Update") and make sure you're using a supported shell: zsh, bash, fish, or PowerShell (CMD/CTRL + Shift + P → "Terminal: Select Default Profile"). まだ問題がありますか？
+
+ただし、以下のWARGNINGが出ている場合はうまくいかない。
+
+> Warning: PowerShell detected that you might be using a screen reader and has disabled PSReadLine for compatibility purposes. If you want to re-enable it, run 'Import-Module PSReadLine'.
+
+この場合 `code $Profile` で開いたファイルに以下を追記。
+
+```
+Import-Module PSReadLine
+if ($env:TERM_PROGRAM -eq "vscode") { . "$(code --locate-shell-integration-path pwsh)" }
+```
